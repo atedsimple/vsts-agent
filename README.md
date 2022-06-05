@@ -61,6 +61,10 @@ Swarm-1 will automatically initialise the Docker Swarm but manually connecting t
 
 Run "docker swarm join-token manager" on Swarm-1 then copy the output and run on other hosts for them to join the swarm
 
+Then pull the required images to each host by running "docker pull modalitysystems/vsts-agent:ltsc2019-6.27"
+
+> If you are using a private registtry the lofin using docker login --password ? --username ? <registry>
+
 # Host version
 
 It is important to match the host operating system to the base Docker Image so we have created two as follows:
