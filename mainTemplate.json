@@ -12,9 +12,6 @@
             "type": "string",
             "defaultValue": "Standard_D2s_v5",
             "allowedValues": [
-                "Standard_D2s_v4",
-                "Standard_D4s_v4",
-                "Standard_D8s_v4",
                 "Standard_D2s_v5",
                 "Standard_D4s_v5",
                 "Standard_D8s_v5"
@@ -58,26 +55,6 @@
             "type": "securestring",
             "metadata": {
                 "description": "The Azure DevOps PAT Token."
-            }
-        },
-        "AzureContainerRegistry": {
-            "type": "string",
-            "defaultValue": "modality.azurecr.io",
-            "metadata": {
-                "description": "The Azure Container Registy to login into."
-            }
-        },
-        "AzureContainerRegistryUsername": {
-            "type": "string",
-            "defaultValue": "modality",
-            "metadata": {
-                "description": "The Azure Container Registy User to login with."
-            }
-        },
-        "AzureContainerRegistryPassword": {
-            "type": "securestring",
-            "metadata": {
-                "description": "The Azure Container Registy Password to login with."
             }
         }
     },
@@ -374,7 +351,7 @@
                 "typeHandlerVersion": "1.10",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
-                    "commandToExecute": "[concat('powershell -ExecutionPolicy Bypass Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False; Set-ItemProperty -Path HKLM:\\Software\\Microsoft\\ServerManager -Name DoNotOpenServerManagerAtLogon -Value 1; Resize-Partition -DriveLetter C -Size (Get-PartitionSupportedSize -DriveLetter C).SizeMax -ErrorAction SilentlyContinue; docker login --password ', parameters('AzureContainerRegistryPassword'),' --username ', parameters('AzureContainerRegistryUsername'), ' ', parameters('AzureContainerRegistry'), '; if ($env:COMPUTERNAME -Match ''swarm-1'') { if ((docker info --format ''{{.Swarm.ControlAvailable}}'') -Match ''false'') { docker swarm init --default-addr-pool 10.20.0.0/16 --default-addr-pool-mask-length 26 --advertise-addr 10.0.0.11 }}')]",
+                    "commandToExecute": "[concat('powershell -ExecutionPolicy Bypass -Command Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False; Set-ItemProperty -Path HKLM:\\Software\\Microsoft\\ServerManager -Name DoNotOpenServerManagerAtLogon -Value 1; Resize-Partition -DriveLetter C -Size (Get-PartitionSupportedSize -DriveLetter C).SizeMax -ErrorAction SilentlyContinue; if ($env:COMPUTERNAME -Match ''swarm-1'') { if ((docker info --format ''{{.Swarm.ControlAvailable}}'') -Match ''false'') { docker swarm init --default-addr-pool 10.20.0.0/16 --default-addr-pool-mask-length 26 --advertise-addr 10.0.0.11 }}')]",
                     "timestamp": "1"
                 }
                 }
