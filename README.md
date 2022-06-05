@@ -6,8 +6,6 @@ To get started [Install](https://docs.docker.com/install/windows/docker-ee/) Doc
 
 Create a Docker [Swarm](https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/) on 1, 3, 5 or 7 Windows Servers
 
-or use this [ARM Template](mainTemplate.json) to deploy a swarm cluster into Azure
-
 >From an administrative powershell run the following command:
 
 docker service create --name ? --with-registry-auth --replicas ? --update-failure-action "continue" -e AZP_URL=? -e AZP_TOKEN=? -e AZP_POOL=? -e IMAGE="modalitysystems/vsts-agent:ltsc2019-6.27" -d modalitysystems/vsts-agent:ltsc2019-6.27
@@ -50,6 +48,18 @@ If you want to try a different agent version enter "YES" to AZP_PACKAGE_OVERRIDE
 Then run:
 
 .\start.ps1
+
+# Azure based Docker Swarm
+
+Use this [ARM Template](mainTemplate.json) to deploy a swarm cluster into Azure
+
+This will also deploy into an Azure Deployment group so that you can use a pipleine for management. A [token](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows) will be required for this
+
+Bastion is used from the vnet to connect to all of the hosts
+
+Swarm-1 will automatically initialise the Docker Swarm but manually connecting the other hosts will be required
+
+Run "docker swarm join-token manager" on Swarm-1 then copy the output and run on other hosts
 
 # Host version
 
