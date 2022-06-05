@@ -4,11 +4,13 @@ vsts-agent is a Docker image that includes many build tools for use with Azure D
 
 To get started [Install](https://docs.docker.com/install/windows/docker-ee/) Docker on Windows Server
 
-Create a Docker [Swarm](https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/) on 1, 3 or 5 Windows Servers
+Create a Docker [Swarm](https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/) on 1, 3, 5 or 7 Windows Servers
+
+or use this [ARM Template](mainTemplate.json) to deploy a swarm cluster into Azure
 
 >From an administrative powershell run the following command:
 
-docker service create --name ? --replicas ? -e AZP_URL=? -e AZP_TOKEN=? -e AZP_POOL=? -d modalitysystems/vsts-agent:ltsc2019-6.27
+docker service create --name ? --with-registry-auth --replicas ? --update-failure-action "continue" -e AZP_URL=? -e AZP_TOKEN=? -e AZP_POOL=? -e IMAGE="modalitysystems/vsts-agent:ltsc2019-6.27" -d modalitysystems/vsts-agent:ltsc2019-6.27
 
 >To scale the service run the following command:
 
@@ -16,7 +18,7 @@ docker service scale ?=16
 
 >To update the service run the following command:
 
-docker service update ? --replicas ? --update-parallelism ? --env-add AZP_URL=? --env-add AZP_TOKEN=? --env-add AZP_POOL=? --image modalitysystems/vsts-agent:ltsc2019-6.27
+docker service update ? --replicas ? --update-parallelism ? -e AZP_URL=? -e AZP_TOKEN=? -e AZP_POOL=? --image modalitysystems/vsts-agent:ltsc2019-6.27
 
 Update Parallelism allows you to define controlled batches to update so --replicas 16 --update-parallelism 8 would update 8, wait until they have all successfully updated and then update the remaining 8. Docker will see the container as being up before Azure sees the agent as being Online.
 
