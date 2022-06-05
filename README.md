@@ -63,7 +63,7 @@ Run "docker swarm join-token manager" on Swarm-1 then copy the output and run on
 
 Then pull the required images to each host by running "docker pull modalitysystems/vsts-agent:ltsc2019-6.27"
 
-> If you are using a private registtry the lofin using docker login --password ? --username ? <registry>
+> If you are using a private registtry the lofin using "docker login --password ? --username ? <registry>"
 
 # Host version
 
