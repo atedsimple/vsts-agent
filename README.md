@@ -51,15 +51,15 @@ Then run:
 
 # Azure based Docker Swarm
 
-Use this [ARM Template](mainTemplate.json) to deploy a swarm cluster into Azure
+Use this [ARM Template](mainTemplate.json) to deploy a Docker Swarm Cluster into Azure
 
-This will also deploy into an Azure Deployment group so that you can use a pipleine for management. A [token](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows) will be required for this
+This will also deploy into an Azure Deployment group so that you can use a pipeline for management. A [token](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows) will be required for this
 
 Bastion is used from the vnet to connect to all of the hosts
 
 Swarm-1 will automatically initialise the Docker Swarm but manually connecting the other hosts will be required
 
-Run "docker swarm join-token manager" on Swarm-1 then copy the output and run on other hosts
+Run "docker swarm join-token manager" on Swarm-1 then copy the output and run on other hosts for them to join the swarm
 
 # Host version
 
