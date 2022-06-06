@@ -55,6 +55,18 @@ Run "docker stats" to get live stats on running containers
 
 ![Stats](images/stats.png)
 
+Run "docker images" to get a list of all images on host
+
+Run "docker container ls" to get a list of all running containers on a host, add -a to include terminated containers
+
+Run "docker service ls" to get a list of services running in accross the swarm
+
+Run "docker service ps $(docker service ls -q)" to get a breakdown of where the service is running
+
+Run "docker node ls" to get a list of all nodes in a the swarm and "docker node inspect self --pretty" to get info on current node
+
+Run "docker service logs [service]" to show logs for all containers in the service
+
 # Azure based Docker Swarm
 
 Use this [ARM Template](mainTemplate.json) to deploy a Docker Swarm Cluster into Azure
