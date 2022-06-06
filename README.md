@@ -49,6 +49,10 @@ Then run:
 
 .\start.ps1
 
+# Swarm Diagnostics
+
+Run "docker stats" to get live stats of containers running on a node
+
 # Azure based Docker Swarm
 
 Use this [ARM Template](mainTemplate.json) to deploy a Docker Swarm Cluster into Azure
