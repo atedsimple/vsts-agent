@@ -14,7 +14,8 @@
             "allowedValues": [
                 "Standard_D2s_v5",
                 "Standard_D4s_v5",
-                "Standard_D8s_v5"
+                "Standard_D8s_v5",
+                "Standard_D16s_v5"
                 ],
             "metadata": {
                 "description": "The desired VM size to install."
@@ -32,21 +33,18 @@
         },
         "AzureAccountUrl": {
             "type": "string",
-            "defaultValue": "https://dev.azure.com/modalitysystems",
             "metadata": {
                 "description": "The Azure DevOps account url for the VM to be associated."
             }
         },
         "AzureProject": {
             "type": "string",
-            "defaultValue": "DevOps",
             "metadata": {
                 "description": "The Azure DevOps project for the VM to be associated."
             }
         },
         "AzureDeploymentGroup": {
             "type": "string",
-            "defaultValue": "Docker Azure",
             "metadata": {
                 "description": "The Azure DevOps deployment group for the VM to be associated."
             }
