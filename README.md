@@ -69,7 +69,9 @@ Run "docker service logs [service]" to show logs for all containers in the servi
 
 # Azure based Docker Swarm
 
-Use this [ARM Template](mainTemplate.json) to deploy a Docker Swarm Cluster into Azure
+Use this [ARM Template](mainTemplate.json) to deploy a Docker Swarm Cluster into [Azure](https://portal.azure.com/#create/Microsoft.Template)
+
+![Build Template](images/build-template.png)
 
 This will also deploy into an Azure Deployment group so that you can use a pipeline for management. A [token](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows) will be required for this
 
