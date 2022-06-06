@@ -51,7 +51,7 @@ Then run:
 
 # Swarm Diagnostics
 
-Run "docker stats" to get live stats of containers running on a node
+Run "docker stats" to get live stats on running containers
 
 ![Stats](images/stats.png)
 
