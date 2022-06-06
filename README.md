@@ -36,7 +36,7 @@ For tasks that require the use of CodeCoverage.exe or SqlPackage.exe, their resp
 
 # Run agent in interactive mode
 
-docker run -it modalitysystems/vsts-agent:ltsc2019-6.27 powershell
+docker run -it --rm modalitysystems/vsts-agent:ltsc2019-6.27 powershell
 
 Then run:
 
@@ -65,14 +65,15 @@ Then pull the required images to each host by running "docker pull modalitysyste
 
 > If you are using a private registtry the login using "docker login --password ? --username ? <registry>"
 
-# Host version
+# Azure Container Registry (ACR)
 
-It is important to match the host operating system to the base Docker Image so we have created two as follows:
+The images used in the examples above are stored on Docker Hub and not maintained
+  
+ACR should be deployed and used in your environment for pushing and pulling images to the Docker Swarm. A service enpoint is configured on the VNET for optimal performance
 
-modalitysystems/vsts-agent:ltsc2016-6.27
+Onece an ACR excists in your environment then run "docker login --password ? --username ? [registry]" from each node of the swarm
 
-modalitysystems/vsts-agent:ltsc2019-6.27
-
+On one of the nodes in the swarm, download and extract [vsts-agent-ltsc2019](https://github.com/modalitysystems/vsts-agent/releases/tag/ltsc2019)
 # CleanUp Offline Agents
 
 When the Docker service starts a new container based agent, it will get the name of it's virtual MAC address which will come from the Hyper-V MAC pool. When the container is stopped, the old agent will remain in Azure DevOps in an Offline state. This [Rest API Script](scripts/ClearUpAgents.ps1) can be used to delete any Offline Agents.
