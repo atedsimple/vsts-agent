@@ -63,17 +63,22 @@ Run "docker swarm join-token manager" on Swarm-1 then copy the output and run on
 
 Then pull the required images to each host by running "docker pull modalitysystems/vsts-agent:ltsc2019-6.27"
 
-> If you are using a private registtry the login using "docker login --password ? --username ? <registry>"
-
 # Azure Container Registry (ACR)
 
 The images used in the examples above are stored on Docker Hub and not maintained
   
 ACR should be deployed and used in your environment for pushing and pulling images to the Docker Swarm. A service enpoint is configured on the VNET for optimal performance
 
-Onece an ACR excists in your environment then run "docker login --password ? --username ? [registry]" from each node of the swarm
+Onece an ACR excists in your environment run "docker login --password ? --username ? [acr-url]" from each node of the swarm
 
 On one of the nodes in the swarm, download and extract [vsts-agent-ltsc2019](https://github.com/modalitysystems/vsts-agent/releases/tag/ltsc2019)
+
+From the extracted folder run "docker build -t [acr-url]/vsts-agent:[version] .
+
+Once it has finished building run "docker image push [acr-url]/vsts-agent:[version]"
+
+Then when the image has finished pushing run "docker pull [acr-url]/vsts-agent:[version]" from each of the other nodes in the swarm
+
 # CleanUp Offline Agents
 
 When the Docker service starts a new container based agent, it will get the name of it's virtual MAC address which will come from the Hyper-V MAC pool. When the container is stopped, the old agent will remain in Azure DevOps in an Offline state. This [Rest API Script](scripts/ClearUpAgents.ps1) can be used to delete any Offline Agents.
