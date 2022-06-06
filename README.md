@@ -69,7 +69,7 @@ The images used in the examples above are stored on Docker Hub and not maintaine
   
 ACR should be deployed and used in your environment for pushing and pulling images to the Docker Swarm. A service enpoint is configured on the VNET for optimal performance
 
-Onece an ACR excists in your environment run "docker login --password ? --username ? [acr-url]" from each node of the swarm
+Once an ACR excists in your environment run "docker login --password ? --username ? [acr-url]" from each node of the swarm
 
 On one of the nodes in the swarm, download and extract [vsts-agent-ltsc2019](https://github.com/modalitysystems/vsts-agent/releases/tag/ltsc2019)
 
