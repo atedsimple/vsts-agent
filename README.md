@@ -73,7 +73,7 @@ Use this [ARM Template](mainTemplate.json) to deploy a Docker Swarm Cluster into
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmodalitysystems%2Fvsts-agent%2Fmaster%2FmainTemplate.json)
 
-This will also deploy into an Azure Deployment group so that you can use a pipeline for management. A [token](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows) will be required for this
+This will also deploy into an Azure DevOps Deployment group so that you can use a pipeline for management. A [token](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows) will be required for this
 
 Bastion is used from the vnet to connect to all of the hosts
 
@@ -101,7 +101,7 @@ Then when the image has finished pushing run "docker pull [acr-url]/vsts-agent:[
 
 # CleanUp Offline Agents
 
-When the Docker service starts a new container based agent, it will get the name of it's virtual MAC address which will come from the Hyper-V MAC pool. When the container is stopped, the old agent will remain in Azure DevOps in an Offline state. This [Rest API Script](scripts/ClearUpAgents.ps1) can be used to delete any Offline Agents.
+When the Docker service starts a new container based agent, it will get the name of it's virtual MAC address which will come from the Hyper-V MAC pool. When the container is stopped, the old agent will remain in Azure DevOps in an Offline state. This [Rest API Script](scripts/ClearUpAgents.ps1) can be used to delete any Offline Agents. When useing the ARM template to deploy into Azure, there is an Automation Account called "ClearUpAgents" that can be run to do this. It is also run automatically once a day.
 
 To get the Pool ID, navigate to the required Agent Pool in Azure DevOps and look in the browser address bar
 
