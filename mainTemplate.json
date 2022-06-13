@@ -64,8 +64,7 @@
     },
     "variables": {
         "BlobStorageContainer": "scripts",
-        "BlobStorageUri": "https://raw.githubusercontent.com/modalitysystems/vsts-agent/master",
-        "JobScheduleId": "bd7c0288-7355-47fa-b320-9583ffd84593"
+        "BlobStorageUri": "https://raw.githubusercontent.com/modalitysystems/vsts-agent/master"
     },
     "resources": [
         {
@@ -438,7 +437,7 @@
                 {
                     "type": "Microsoft.Automation/automationAccounts/jobSchedules",
                     "apiVersion": "2020-01-13-preview",
-                    "name": "[concat('ClearUpAgents/', variables('JobScheduleId'))]",
+                    "name": "[concat('ClearUpAgents/', guid(resourceGroup().id))]",
                     "dependsOn": [
                         "[resourceId('Microsoft.Automation/automationAccounts', 'ClearUpAgents')]",
                         "[resourceId('Microsoft.Automation/automationAccounts/runbooks', 'ClearUpAgents', 'ClearUpAgents')]"
