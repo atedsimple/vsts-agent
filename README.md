@@ -79,7 +79,9 @@ Bastion is used from the vnet to connect to all of the hosts
 
 Swarm-1 will automatically initialise the Docker Swarm but manually connecting the other hosts will be required
 
-Run "docker swarm join-token manager" on Swarm-1 then copy the output and run on other hosts for them to join the swarm
+On each of the other nodes run JoinSwarm.ps1 that should be on the desktop. This will use remote PowerShell to connect to Swarm-1 to retreive the required token and then join the node to the swarm as a manager
+
+![JoinSwarm](images/join-swarm.png)
 
 Then pull the required images to each host by running "docker pull modalitysystems/vsts-agent:ltsc2019-6.27"
 
